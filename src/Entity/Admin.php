@@ -2,17 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
+use App\Repository\AdminRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-#[ORM\Entity(repositoryClass: UserRepository::class)]
+#[ORM\Entity(repositoryClass: AdminRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class Admin implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -34,12 +33,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private array $roles = [];
 
+    // #[ORM\Column(length: 20)]
+    // private ?string $Roles = null;
+
     /**
      * @var string The hashed password
      */
     #[ORM\Column]
     #[Assert\Regex(
-        pattern: '/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,32}$/',
+        pattern: '^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,32}$',
         message: 'le mot de passe doit comporter au minimum un chiffre, un carractère minuscule,, majuscule et spécial'
     )]
     #[Assert\Length(
@@ -50,14 +52,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     private ?string $password = null;
 
-    #[ORM\Column(length: 40)]
+    #[ORM\Column(length: 45)]
     #[Assert\Length(
         min: 2,
         minMessage: "Nom d'utilisateur trop court minimum {{ limit }} caractères",
         max: 40,
         maxMessage: "Nom d'utilisateur trop long, longueur maximum {{ limit }} caractères",
     )]
-    private ?string $User_Name = null;
+    private ?string $Name = null;
 
     #[ORM\Column(length: 45)]
     #[Assert\Length(
@@ -66,27 +68,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         max: 45,
         maxMessage: "Prénom d'utilisateur trop long, longueur maximum {{ limit }} caractères",
     )]
-    private ?string $User_Firstname = null;
-
-
-    // #[ORM\Column]
-    // private ?string $User_PhoneNumber = null;
+    private ?string $Firstname = null;
 
     #[ORM\Column]
-    #[Assert\Range(
-        min: 18,
-        max: 120,
-        notInRangeMessage: "Age minimum {{ limit }} ans",
+    #[Assert\Regex(
+        pattern: '/^((\+)33|0)[1-9](\d{2}){4}$/',
+        message: 'Numéro de téléphone invalide veuillez mettre +33 si vous ette en France'
     )]
-    #[Assert\NotBlank()]
-    private ?int $User_Age = null;
+    private ?int $PhoneNumber = null;
 
-
-    #[ORM\Column(length: 255)]
-    private ?string $User_Pseudo = null;
-
-    #[ORM\Column(length: 12, unique: true)]
-    private ?string $User_phone_number = null;
+    #[ORM\Column]
+    #[Assert\Regex(
+        pattern: '/^(?:0 [1-9]| [1-8]\d|9[0-8])\d{3}$/',
+        message: 'Code postale invalide'
+    )]
+    private ?int $PostalCode = null;
 
     public function getId(): ?int
     {
@@ -121,8 +117,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        // guarantee every user at least has ROLE_ADMIN
+        $roles[] = 'ROLE_ADMIN';
 
         return array_unique($roles);
     }
@@ -158,62 +154,50 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    public function getUserName(): ?string
+    public function getName(): ?string
     {
-        return $this->User_Name;
+        return $this->Name;
     }
 
-    public function setUserName(string $User_Name): self
+    public function setName(string $Name): self
     {
-        $this->User_Name = $User_Name;
+        $this->Name = $Name;
 
         return $this;
     }
 
-    public function getUserFirstname(): ?string
+    public function getFirstname(): ?string
     {
-        return $this->User_Firstname;
+        return $this->Firstname;
     }
 
-    public function setUserFirstname(string $User_Firstname): self
+    public function setFirstname(string $Firstname): self
     {
-        $this->User_Firstname = $User_Firstname;
+        $this->Firstname = $Firstname;
 
         return $this;
     }
 
-    public function getUserPhoneNumber(): ?int
+    public function getPhoneNumber(): ?int
     {
-        return $this->User_phone_number;
+        return $this->PhoneNumber;
     }
 
-    public function setUserPhoneNumber(int $User_phone_number): self
+    public function setPhoneNumber(int $PhoneNumber): self
     {
-        $this->User_phone_number = $User_phone_number;
+        $this->PhoneNumber = $PhoneNumber;
 
         return $this;
     }
 
-    public function getUserAge(): ?int
+    public function getPostalCode(): ?int
     {
-        return $this->User_Age;
+        return $this->PostalCode;
     }
 
-    public function setUserAge(int $User_Age): self
+    public function setPostalCode(int $PostalCode): self
     {
-        $this->User_Age = $User_Age;
-
-        return $this;
-    }
-
-    public function getUserPseudo(): ?string
-    {
-        return $this->User_Pseudo;
-    }
-
-    public function setUserPseudo(string $User_Pseudo): self
-    {
-        $this->User_Pseudo = $User_Pseudo;
+        $this->PostalCode = $PostalCode;
 
         return $this;
     }
