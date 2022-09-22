@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "bootstrap": "^5.2.1",
-        "watch": "^0.13.0"
+        "bootstrap-icons": "^1.9.1",
+        "watch": "^1.0.2"
     }
 }

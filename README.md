@@ -31,17 +31,17 @@ symfony console make:auth
  composer require symfony/security-csrf
 
 yarn install
- yarn watch
- yarn add watch
+yarn watch
+yarn add watch
 
- php bin/console security:hash-password
+php bin/console security:hash-password
 
- composer require --dev symfony/maker-bundle
+composer require --dev symfony/maker-bundle
 
- php bin/console make:controller BrandNewController
+php bin/console make:controller BrandNewController
 
 create controller:
- symfony console make:controller ConferenceController
+symfony console make:controller ConferenceController
 
 registrationUser -> findall()
 
