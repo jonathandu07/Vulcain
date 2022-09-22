@@ -39,7 +39,7 @@ composer require --dev symfony/maker-bundle
 php bin/console make:controller BrandNewController
 
 create controller:
- symfony console make:controller ConferenceController
+symfony console make:controller ConferenceController
 
 registrationUser -> findall()
 

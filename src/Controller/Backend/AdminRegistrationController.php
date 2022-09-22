@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Backend;
 
 use App\Entity\Admin;
 use App\Form\AdminRegistrationFormType;
@@ -37,7 +37,7 @@ class AdminRegistrationController extends AbstractController
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('adminRegistration/register.html.twig', [
+        return $this->render('Backend/adminRegistration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }

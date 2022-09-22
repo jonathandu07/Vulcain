@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -86,6 +88,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 12, unique: true)]
     private ?string $User_phone_number = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $createdAt = null;
+
+    #[ORM\Column]
+    private ?\DateTimeImmutable $updatedAt = null;
+
+    #[ORM\ManyToMany(targetEntity: BadUser::class, mappedBy: 'idUser')]
+    private Collection $idAmin;
+
+    public function __construct()
+    {
+        $this->idAmin = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -213,6 +229,57 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUserPseudo(string $User_Pseudo): self
     {
         $this->User_Pseudo = $User_Pseudo;
+
+        return $this;
+    }
+
+    public function getCreatedAt(): ?\DateTimeImmutable
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function getUpdatedAt(): ?\DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BadUser>
+     */
+    public function getIdAmin(): Collection
+    {
+        return $this->idAmin;
+    }
+
+    public function addIdAmin(BadUser $idAmin): self
+    {
+        if (!$this->idAmin->contains($idAmin)) {
+            $this->idAmin->add($idAmin);
+            $idAmin->addIdUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIdAmin(BadUser $idAmin): self
+    {
+        if ($this->idAmin->removeElement($idAmin)) {
+            $idAmin->removeIdUser($this);
+        }
 
         return $this;
     }
