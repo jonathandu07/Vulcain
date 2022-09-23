@@ -10,6 +10,11 @@ to have local server in https://
 composer require --dev phpstan/phpstan
 composer require symfony/webpack-encore-bundle
 
+composer require stof/doctrine-extensions-bundle
+composer require vich/uploader-bundle
+composer require symfonycasts/reset-password-bundle
+composer require knplabs/knp-time-bundle
+
 Build database!
 
 composer require symfony/orm-pack
@@ -33,6 +38,7 @@ symfony console make:auth
 yarn install
 yarn watch
 yarn add watch
+yarn add axios
 
 php bin/console security:hash-password
 
@@ -52,3 +58,5 @@ composer require symfony/translation
 
 composer require --dev doctrine/doctrine-fixtures-bundle
 php bin/console doctrine:fixtures:load --append
+
+php bin/console make:reset-password

@@ -2,13 +2,11 @@
 
 namespace App\Entity;
 
-use App\Entity\User;
-use App\Entity\Admin;
+use App\Repository\BadServiceRepository;
 use Doctrine\ORM\Mapping as ORM;
-use App\Repository\BadUserRepository;
 
-#[ORM\Entity(repositoryClass: BadUserRepository::class)]
-class BadUser
+#[ORM\Entity(repositoryClass: BadServiceRepository::class)]
+class BadService
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -19,13 +17,14 @@ class BadUser
     private ?Admin $IdAdmin = null;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?User $IdUser = null;
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Services $IdService = null;
 
     #[ORM\Column(length: 255)]
     private ?string $Reason = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $Description = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $description = null;
 
     public function getId(): ?int
     {
@@ -44,14 +43,14 @@ class BadUser
         return $this;
     }
 
-    public function getIdUser(): ?User
+    public function getIdService(): ?Services
     {
-        return $this->IdUser;
+        return $this->IdService;
     }
 
-    public function setIdUser(?User $IdUser): self
+    public function setIdService(Services $IdService): self
     {
-        $this->IdUser = $IdUser;
+        $this->IdService = $IdService;
 
         return $this;
     }
@@ -70,12 +69,12 @@ class BadUser
 
     public function getDescription(): ?string
     {
-        return $this->Description;
+        return $this->description;
     }
 
-    public function setDescription(string $Description): self
+    public function setDescription(?string $description): self
     {
-        $this->Description = $Description;
+        $this->description = $description;
 
         return $this;
     }

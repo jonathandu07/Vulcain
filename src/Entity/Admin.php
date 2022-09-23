@@ -86,14 +86,6 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     private ?int $PostalCode = null;
 
-    #[ORM\ManyToMany(targetEntity: BadUser::class, mappedBy: 'idAdmin')]
-    private Collection $badUsers;
-
-    public function __construct()
-    {
-        $this->badUsers = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -208,33 +200,6 @@ class Admin implements UserInterface, PasswordAuthenticatedUserInterface
     public function setPostalCode(int $PostalCode): self
     {
         $this->PostalCode = $PostalCode;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, BadUser>
-     */
-    public function getBadUsers(): Collection
-    {
-        return $this->badUsers;
-    }
-
-    public function addBadUser(BadUser $badUser): self
-    {
-        if (!$this->badUsers->contains($badUser)) {
-            $this->badUsers->add($badUser);
-            $badUser->addIdAdmin($this);
-        }
-
-        return $this;
-    }
-
-    public function removeBadUser(BadUser $badUser): self
-    {
-        if ($this->badUsers->removeElement($badUser)) {
-            $badUser->removeIdAdmin($this);
-        }
 
         return $this;
     }

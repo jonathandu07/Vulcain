@@ -28,6 +28,15 @@ class GeographiqueZone
     #[ORM\Column(length: 255)]
     private ?string $localite = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?User $IdUser = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Services $IdService = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Produits $IdProduit = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +98,42 @@ class GeographiqueZone
     public function setLocalite(string $localite): self
     {
         $this->localite = $localite;
+
+        return $this;
+    }
+
+    public function getIdUser(): ?User
+    {
+        return $this->IdUser;
+    }
+
+    public function setIdUser(?User $IdUser): self
+    {
+        $this->IdUser = $IdUser;
+
+        return $this;
+    }
+
+    public function getIdService(): ?Services
+    {
+        return $this->IdService;
+    }
+
+    public function setIdService(?Services $IdService): self
+    {
+        $this->IdService = $IdService;
+
+        return $this;
+    }
+
+    public function getIdProduit(): ?Produits
+    {
+        return $this->IdProduit;
+    }
+
+    public function setIdProduit(?Produits $IdProduit): self
+    {
+        $this->IdProduit = $IdProduit;
 
         return $this;
     }

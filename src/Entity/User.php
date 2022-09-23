@@ -95,9 +95,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?\DateTimeImmutable $updatedAt = null;
 
-    #[ORM\ManyToMany(targetEntity: BadUser::class, mappedBy: 'idUser')]
-    private Collection $idAmin;
-
     public function __construct()
     {
         $this->idAmin = new ArrayCollection();
@@ -253,33 +250,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, BadUser>
-     */
-    public function getIdAmin(): Collection
-    {
-        return $this->idAmin;
-    }
-
-    public function addIdAmin(BadUser $idAmin): self
-    {
-        if (!$this->idAmin->contains($idAmin)) {
-            $this->idAmin->add($idAmin);
-            $idAmin->addIdUser($this);
-        }
-
-        return $this;
-    }
-
-    public function removeIdAmin(BadUser $idAmin): self
-    {
-        if ($this->idAmin->removeElement($idAmin)) {
-            $idAmin->removeIdUser($this);
-        }
 
         return $this;
     }
