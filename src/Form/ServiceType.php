@@ -12,10 +12,30 @@ class ServiceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nomService')
-            ->add('description')
-            ->add('tarif')
-            ->add('type')
+            ->add('nomService', TestType::class, [
+            'label' => false,
+            'attr' => [
+                'placeholder' => 'Nom produit',
+            ],
+            'required' => true,
+        ])
+            ->add('description', TextareaType::class, [
+            'label' => false, [
+                'placeholder' => 'Description',
+            ],
+            'required' => true,
+        ])
+            ->add('tarif', FloatType::class, [
+            'label' =>  'Prix',
+            'required' => true,
+        ])
+            ->add('type', TestType::class, [
+            'label' => false,
+            'attr' => [
+                'placeholder' => 'Type de produit',
+            ],
+            'required' => true,
+        ])
         ;
     }
 

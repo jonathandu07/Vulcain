@@ -25,7 +25,7 @@ class Comments
     #[ORM\JoinColumn(nullable: false)]
     private ?Produits $IdProduit = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'boolean')]
     private ?bool $active = null;
 
     #[ORM\Column]
