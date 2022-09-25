@@ -1,11 +1,57 @@
-.header{
-    height: 6rem;
+.header {
+    height: 4rem;
     margin: auto;
 
-    &__nav{
+    &__nav {
         background-color: $BF;
         height: fit-content;
         width: 100%;
-        height:6rem;
+        height: 4rem;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+
+        &__div-logo {
+            height: 4rem;
+            width: 13vw;
+            overflow: hidden;
+            //background-color: red;
+            margin-top: auto;
+            margin-bottom: auto;
+
+            &__a {
+                margin: auto;
+
+                &__logo {
+                    height: 4rem;
+                    object-fit: cover;
+                    position: relative;
+                    bottom: 0.4rem;
+                }
+            }
+        }
+
+        // right
+
+        &__nav-right {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+
+            &__div-left{
+                height: 4rem;
+                width: 4rem;
+                overflow: hidden;
+
+                &__a{
+                    margin: auto;
+
+                    &__img{
+                        width: 3rem;
+                        height: 3rem;
+                    }
+                }
+            }
+        }
     }
 }

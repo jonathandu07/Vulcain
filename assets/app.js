@@ -9,3 +9,8 @@
 import './styles/app.scss';
 // start the Stimulus application
 import './bootstrap';
+
+//images
+import './images/Vulcain-BG.png';
+import './images/spain.png';
+import './images/united_kingdom.png';
