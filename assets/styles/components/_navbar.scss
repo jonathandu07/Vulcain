@@ -9,7 +9,7 @@
         height: 4rem;
         display: flex;
         flex-direction: row;
-        justify-content: space-around;
+        justify-content: space-between;
 
         &__div-logo {
             height: 4rem;
@@ -18,12 +18,13 @@
             //background-color: red;
             margin-top: auto;
             margin-bottom: auto;
+            margin-left: 0.5vw;
 
             &__a {
                 margin: auto;
 
                 &__logo {
-                    height: 4rem;
+                    width: 13vw;
                     object-fit: cover;
                     position: relative;
                     bottom: 0.4rem;
@@ -33,22 +34,54 @@
 
         // right
 
-        &__nav-right {
+        &-right {
             display: flex;
             flex-direction: row;
             justify-content: space-between;
+            position: absolute;
+            left: 90vw;
 
-            &__div-left{
+            &__div-left {
                 height: 4rem;
                 width: 4rem;
                 overflow: hidden;
 
-                &__a{
+                &__a {
                     margin: auto;
 
-                    &__img{
-                        width: 3rem;
-                        height: 3rem;
+                    &__img {
+                        width: 4rem;
+                    }
+                }
+            }
+
+            &__div-middle {
+                height: 4rem;
+                width: 4rem;
+                overflow: hidden;
+
+                &__a {
+                    margin: auto;
+
+                    &__img {
+                        width: 4rem;
+                    }
+                }
+            }
+
+            &__div-right {
+                height: 4rem;
+                width: 4rem;
+                overflow: hidden;
+
+                &__a {
+                    margin: auto;
+
+                    &__i {
+                        font-size: 4rem;
+                        color: $BG;
+                        position: relative;
+                        bottom: 1rem;
                     }
                 }
             }

@@ -1,20 +1,26 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Accueil{% endblock %}
+{% block title %}Accueil
+{% endblock %}
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+{% endblock %}
 
+{% block javascripts %}
+	{{ encore_entry_script_tags('app') }}
+{% endblock %}
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ 'F:/YHWH-Consortium/Metis/web-developpement/realisations/Vulcain-Symfo/Vulcain/src/Controller/MainController.php'|file_link(0) }}">src/Controller/MainController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'F:/YHWH-Consortium/Metis/web-developpement/realisations/Vulcain-Symfo/Vulcain/templates/main/index.html.twig'|file_link(0) }}">templates/main/index.html.twig</a></code></li>
-    </ul>
-</div>
+	<div id="carouselExampleSlidesOnly" class="carousel slide slider" data-bs-ride="carousel">
+		<div class="carousel-inner slider__div">
+			<div class="carousel-item active slider__div__div-1">
+				<img src="" class="d-block w-100 slider__div__div-1__img" alt="...">
+			</div>
+			<div class="carousel-item slider__div__div-2">
+				<img src="..." class="d-block w-100 slider__div__div-2__img" alt="...">
+			</div>
+			<div class="carousel-item slider__div__div-3">
+				<img src="..." class="d-block w-100 slider__div__div-3__img" alt="...">
+			</div>
+		</div>
+	</div>
 {% endblock %}

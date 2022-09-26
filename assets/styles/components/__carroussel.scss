@@ -1,0 +1,45 @@
+.slider {
+    margin: auto;
+    height: 20vw;
+    background-color: red;
+
+    &__div {
+        margin: auto;
+
+        &__div-1 {
+            background-color: yellow;
+            height: 100%;
+            width: 100%;
+
+            &__img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &__div-2 {
+            background-color: wheat;
+            height: 100%;
+            width: 100%;
+
+            &__img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &__div-3 {
+            background-color: green;
+            height: 100%;
+            width: 100%;
+
+            &__img {
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}
