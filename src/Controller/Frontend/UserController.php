@@ -81,8 +81,14 @@ class UserController extends AbstractController
     }
 
     #[Route('/{User_Pseudo}/commentaire', name:'app_user_controler_commentaire')]
-    public function commentaireAction(Request $resquest, User $user): Response 
+    public function commentaireAction(?User $user, Request $resquest): Response 
     {
+        if(!$user instanceof User) {
+            $this->addFlash('error', 'User non trouvé');
+
+            return $this->redirectToRoute('app_main');
+        }
+
         $comment = new Comments();
         $commentForm = $this -> createForm(RegistrationFormType::class, $comment);
         $commentForm -> handleRequest($resquest);
@@ -92,7 +98,7 @@ class UserController extends AbstractController
 
             $this->addFlash('sucess', 'copmentaire ajouté avec succés');
             return $this->redirectToRoute('app_user_controler', [
-                'User_Pseudo' => $this->user->getUserPseudo()
+                'User_Pseudo' => $user->getUserPseudo()
             ]);
         }
 
