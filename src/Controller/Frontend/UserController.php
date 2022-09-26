@@ -39,8 +39,14 @@ class UserController extends AbstractController
     ) {
     }
     #[Route('/{User_Pseudo}', name: 'app_user_controler')]
-    public function index(): Response
+    public function index(User $user): Response
     {
+        if (!$user instanceof User) {
+            $this->addFlash('error', 'User non trouvé');
+
+            return $this->redirectToRoute('app_main');
+        }
+
         $geoZone = $this->repoGeoZone->findAll();
         $commentaire = $this->repoComments->findAll();
         $produits = $this->repoProduit->findAll();
@@ -61,6 +67,11 @@ class UserController extends AbstractController
     #[Route('/{User_Pseudo}/geoZone', name: 'app_user_controler_geoZone')]
     public function geoZoneAction(Request $request, Security $security, User $user): Response
     {
+        if (!$user instanceof User) {
+            $this->addFlash('error', 'User non trouvé');
+
+            return $this->redirectToRoute('app_main');
+        }
 
         $geo = new GeographiqueZone();
         $geoZoneForm = $this->createForm(RegistrationFormType::class, $geo);
@@ -108,7 +119,14 @@ class UserController extends AbstractController
     }
 
     #[Route('/{User_Pseudo}/produit', name: 'app_user_controler_produit')]
+
     public function produitAction(Request $request, User $user) {
+        if (!$user instanceof User) {
+            $this->addFlash('error', 'User non trouvé');
+
+            return $this->redirectToRoute('app_main');
+        }
+
         $produit = new Produits();
         $produitform = $this -> createForm(RegistrationFormType::class, $produit);
         $produitform -> handleRequest($request);
@@ -130,6 +148,11 @@ class UserController extends AbstractController
     #[Route('/{User_Pseudo}/service', name: 'app_user_controler_service')]
     public function serviceAction(Request $request, User $user)
     {
+        if (!$user instanceof User) {
+            $this->addFlash('error', 'User non trouvé');
+
+            return $this->redirectToRoute('app_main');
+        }
         $service = new Services();
         $serviceform = $this->createForm(RegistrationFormType::class, $service);
         $serviceform->handleRequest($request);
@@ -151,6 +174,12 @@ class UserController extends AbstractController
     #[Route('/{User_Pseudo}/badService', name: 'app_user_controler_badService')]
     public function badServiceAction(Request $request, User $user)
     {
+        if (!$user instanceof User) {
+            $this->addFlash('error', 'User non trouvé');
+
+            return $this->redirectToRoute('app_main');
+        }
+
         $badService = new BadService();
         $badServiceform = $this->createForm(RegistrationFormType::class, $badService);
         $badServiceform->handleRequest($request);
@@ -172,6 +201,12 @@ class UserController extends AbstractController
     #[Route('/{User_Pseudo}/badproduit', name: 'app_user_controler_badproduit')]
     public function badproduitction(Request $request, User $user)
     {
+        if (!$user instanceof User) {
+            $this->addFlash('error', 'User non trouvé');
+
+            return $this->redirectToRoute('app_main');
+        }
+
         $badproduit = new BadProduit();
         $badproduitform = $this->createForm(RegistrationFormType::class, $badproduit);
         $badproduitform->handleRequest($request);
