@@ -1,5 +1,8 @@
 @import "./colors.scss";
+@import "./styles.scss";
 @import "~bootstrap/scss/bootstrap";
 @import "~bootstrap-icons/font/bootstrap-icons.scss";
+// components
 @import "./components/navbar";
-@import "./components/_carroussel";
+//pages
+@import "./pages/disconnect-home.scss";

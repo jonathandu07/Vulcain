@@ -1,0 +1,28 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    text-decoration: none;
+    list-style-type: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: $NNAC;
+}
+
+body {
+    background: #ffff;
+}
+
+#app {
+    background-color: transparent;
+}
+
+$SCard: 2vw;
+$SCardWidth: 20vw;
+$SCardHeight: 30vw;
+$SBorderWidth:0.2vw;
+$SCardDivTitleHeight:5vw;
+$SCardH2Size:2vw;
+$SCardMiddleSize:100%;
+$textSize:1vw;
+$heightImageCard:19.6875vw;
+$buttonCardRadius:4vw;

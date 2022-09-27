@@ -1,0 +1,9 @@
+@import "/assets/styles/components/_carroussel";
+@import "/assets/styles/components/secteur_cards";
+@import "/assets/styles/components/services_cards.scss";
+
+.main-home-disconnect{
+    background-color: $BG;
+    margin: auto;
+    width: 100vw !important;
+}

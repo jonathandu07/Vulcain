@@ -7,7 +7,7 @@ symfony server:ca:install
 to have local server in https://
 composer require --dev phpstan/phpstan
 composer require symfony/webpack-encore-bundle
-composer require gedmo/doctrine-extensions
+composer require stof/doctrine-extensions-bundle
 
 Build database!
 

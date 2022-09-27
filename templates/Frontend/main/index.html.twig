@@ -10,17 +10,13 @@
 	{{ encore_entry_script_tags('app') }}
 {% endblock %}
 {% block body %}
-	<div id="carouselExampleSlidesOnly" class="carousel slide slider" data-bs-ride="carousel">
-		<div class="carousel-inner slider__div">
-			<div class="carousel-item active slider__div__div-1">
-				<img src="" class="d-block w-100 slider__div__div-1__img" alt="...">
-			</div>
-			<div class="carousel-item slider__div__div-2">
-				<img src="..." class="d-block w-100 slider__div__div-2__img" alt="...">
-			</div>
-			<div class="carousel-item slider__div__div-3">
-				<img src="..." class="d-block w-100 slider__div__div-3__img" alt="...">
-			</div>
-		</div>
-	</div>
+	<main class="main-home-disconnect">
+	{# carousselle #}
+	{% include "Frontend/main/components/_carroussel.html.twig" %}
+	{# article secteurs #}
+	{% include "Frontend/main/components/_cards.html.twig" %}
+	{# article se vendre #}
+	{% include "Frontend/main/components/_services.html.twig" %}
+	</main>
+
 {% endblock %}
