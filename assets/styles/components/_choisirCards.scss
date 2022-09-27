@@ -1,0 +1,42 @@
+.article-choisirServices{
+    margin: auto;
+    margin-top: 4vw;
+
+    &__div-titre{
+        margin-left: auto;
+        margin-right: auto;
+        width: 20vw;
+        text-align: center;
+
+        &__h1{
+            font-size: $SCardH2Size;
+        }
+    }
+
+    // cards
+
+    &__div-cards{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        &__particulier{
+            width: $SCardWidth;
+            height: $SCardWidth;
+            background-color: white;
+            border: solid $SBorderWidth $BF;
+            overflow: hidden;
+
+            &__particulier{
+                text-align: center;
+                margin-left: auto;
+                margin-right: auto;
+
+                &__div-top{
+                    width: 100%;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+}
