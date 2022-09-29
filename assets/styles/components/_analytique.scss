@@ -1,0 +1,55 @@
+.article-analytique {
+    @include centrer;
+    width: 60%;
+    height: $SCardWidth;
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    justify-content: space-around;
+    margin-top: 4vw;
+
+    &__div-text {
+        text-align: start;
+        width: 40vw;
+
+        h2 {
+            font-size: 2vw;
+            margin-top: 1vw;
+            margin-left: 1.2vw;
+        }
+
+        p {
+            font-size: 1vw;
+            margin-left: 4vw;
+            margin-top: 1.5vw;
+            width: 14vw;
+        }
+
+        div {
+            width: 15vw;
+            height: 5vw;
+            text-align: center;
+            position: relative;
+            left: 22vw;
+            bottom: 3vw;
+
+            a {
+                @include button_A;
+            }
+
+            a:hover{
+                color: $BF;
+            }
+        }
+    }
+
+    &__div-img {
+        width: $SCardWidth;
+
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+}

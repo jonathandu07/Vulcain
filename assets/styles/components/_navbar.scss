@@ -7,24 +7,29 @@
         height: fit-content;
         width: 100%;
         height: 4rem;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: 1fr;
+        grid-column-gap: 0px;
+        grid-row-gap: 0px;
 
         &__div-logo {
             height: 4rem;
-            width: 13vw;
+            width: 17rem;
             overflow: hidden;
             //background-color: red;
             margin-top: auto;
             margin-bottom: auto;
             margin-left: 0.5vw;
+            grid-column-start: 0;
+            grid-column-end: 1;
 
             &__a {
                 margin: auto;
 
                 &__logo {
-                    width: 13vw;
+                    display: block;
+                    width: 100%;
                     object-fit: cover;
                     position: relative;
                     bottom: 0.4rem;
@@ -35,16 +40,20 @@
         // right
 
         &-right {
+            display: inline-grid;
+            grid-column-start: 3;
+            grid-column-end: 4;
+            margin-left: auto;
             display: flex;
             flex-direction: row;
-            justify-content: space-between;
-            position: absolute;
-            left: 90vw;
+            align-self: end;
 
             &__div-left {
                 height: 4rem;
                 width: 4rem;
                 overflow: hidden;
+                // grid-column-start: 1;
+                // grid-column-end: 2;
 
                 &__a {
                     margin: auto;
@@ -59,6 +68,8 @@
                 height: 4rem;
                 width: 4rem;
                 overflow: hidden;
+                // grid-column-start: 2;
+                // grid-column-end: 3;
 
                 &__a {
                     margin: auto;
@@ -73,6 +84,8 @@
                 height: 4rem;
                 width: 4rem;
                 overflow: hidden;
+                // grid-column-start: 3;
+                // grid-column-end: 4;
 
                 &__a {
                     margin: auto;
@@ -87,4 +100,12 @@
             }
         }
     }
+}
+
+#div-right{
+    // display: grid;
+    // grid-template-columns: repeat(3, 1fr);
+    // grid-template-rows: 1fr;
+    // grid-column-gap: 0px;
+    // grid-row-gap: 0px;
 }

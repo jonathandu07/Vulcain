@@ -15,7 +15,7 @@
         display: flex;
         flex-direction: column;
 
-        &__drapeau{
+        &__drapeau {
             @include centrer;
             display: block;
             width: 100%;
@@ -23,17 +23,19 @@
             flex-direction: row;
             justify-content: space-between;
 
-            &-bleu{
+            &-bleu {
                 background-color: $BF;
                 height: $underLineSize;
                 width: 33%;
             }
-            &-blanc{
+
+            &-blanc {
                 background-color: $ghost-white;
                 height: $underLineSize;
                 width: 33%;
             }
-            &-rouge{
+
+            &-rouge {
                 background-color: $RV;
                 height: $underLineSize;
                 width: 33%;
@@ -43,21 +45,21 @@
 
     // secteur
 
-    &__div-secteur{
+    &__div-secteur {
         margin-top: 2vw;
         @include centrer;
         width: 50vw;
         @include alignRowJustify;
 
-        a{
+        a {
             text-decoration: none;
-            
-            h3{
+
+            h3 {
                 font-size: $SCardH3Size;
                 color: $NNAC;
             }
 
-            h3:hover{
+            h3:hover {
                 color: $RODM;
             }
         }
@@ -65,37 +67,36 @@
 
     // domaine
 
-    &__div-domaine{
+    &__div-domaine {
         display: flex;
         flex-direction: row;
+        justify-content: space-around;
+        height: 30vw;
+        margin-top: 2vw;
 
-        &__div-left{
+        &__div-left {
             width: 40%;
-            height: 40%;
+            height: 100%;
             border-radius: $SCard;
             @include boxShadowCard;
             overflow: hidden;
+            text-align: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            // background: center;
             display: flex;
             flex-direction: column;
-            text-align: center;
+            justify-content: space-around;
+            gap: 80%;
 
-            &__h3{
+            &__h3 {
                 position: relative;
                 z-index: 1;
                 font-size: $SCardH3Size;
                 color: $NNAC;
             }
 
-            &__img{
-                display: block;
-                // width: 100%;
-                // height: 100%;
-                object-fit: cover;
-                position: relative;
-                z-index: 0;
-            }
-
-            &__a{
+            &__a {
                 position: relative;
                 z-index: 1;
                 font-size: $textSize;
@@ -103,21 +104,34 @@
                 text-decoration: none;
             }
 
-            a:hover{
+            a:hover {
                 color: $RODM;
             }
         }
 
         // right
 
-        &__div-right{
+        &__div-right {
             width: 40%;
-            height: 40%;
+            height: 45%;
             display: flex;
             flex-wrap: wrap;
-            overflow: hidden;
+            column-gap: 8%;
+            row-gap: 20%;
 
-            div{
+            &__div1 {
+                @include divDomaineCards;
+            }
+
+            &__div2 {
+                @include divDomaineCards;
+            }
+
+            &__div3 {
+                @include divDomaineCards;
+            }
+
+            &__div4 {
                 @include divDomaineCards;
             }
         }

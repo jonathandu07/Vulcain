@@ -10,17 +10,20 @@
 	{{ encore_entry_script_tags('app') }}
 {% endblock %}
 {% block body %}
-	<main class="main-home-disconnect">
-	{# carousselle #}
-	{% include "Frontend/main/components/_carroussel.html.twig" %}
-	{# article secteurs #}
-	{% include "Frontend/main/components/_cards.html.twig" %}
-	{# article se vendre #}
-	{% include "Frontend/main/components/_services.html.twig" %}
-	{# article choisir services #}
-	{% include "Frontend/main/components/_choisirCards.html.twig" %}
-	{# nouvautés #}
-	{% include "Frontend/main/components/_nouvautes.html.twig" %}
+	<main
+		class="main-home-disconnect">
+		{# carousselle #}
+		{% include "Frontend/main/components/_carroussel.html.twig" %}
+		{# article secteurs #}
+		{% include "Frontend/main/components/_cards.html.twig" %}
+		{# article se vendre #}
+		{% include "Frontend/main/components/_services.html.twig" %}
+		{# article choisir services #}
+		{% include "Frontend/main/components/_choisirCards.html.twig" %}
+		{# nouvautés #}
+		{% include "Frontend/main/components/_nouvautes.html.twig" %}
+		{# Analytique #}
+		{% include "Frontend/main/components/_analytique.html.twig" %}
 	</main>
 
 {% endblock %}

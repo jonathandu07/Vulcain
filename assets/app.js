@@ -12,5 +12,6 @@ import './bootstrap';
 
 //images
 import './images/Vulcain-BG.png';
+import './images/Vulcain-NNAC.png';
 import './images/spain.png';
 import './images/united_kingdom.png';

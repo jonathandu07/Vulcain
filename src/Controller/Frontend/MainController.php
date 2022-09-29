@@ -15,4 +15,11 @@ class MainController extends AbstractController
             'controller_name' => 'MainController',
         ]);
     }
+    #[Route('/bienvenue', name: 'app_bienvenue')]
+    public function choice(): Response
+    {
+        return $this->render('Frontend/main/bienvenue.html.twig', [
+            'controller_name' => 'MainController',
+        ]);
+    }
 }

@@ -3,9 +3,11 @@
 @import "/assets/styles/components/services_cards.scss";
 @import "/assets/styles/components/choisirCards";
 @import "/assets/styles/components/nouvautes";
+@import "/assets/styles/components/analytique";
 
 .main-home-disconnect{
     background-color: $BG;
     margin: auto;
     width: 100vw !important;
+    padding-bottom: 2vw;
 }
