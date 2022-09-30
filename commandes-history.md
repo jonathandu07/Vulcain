@@ -51,3 +51,11 @@ composer require symfony/translation
 
 composer require --dev doctrine/doctrine-fixtures-bundle
 php bin/console doctrine:fixtures:load --append
+
+faire des test unitaires
+php bin/phpunit
+
+pour avoir des informations sur quel test le résultat se rapporte
+php bin/phpunit --testdox
+
+composer require --dev liip/test-fixtures-bundle

@@ -1,15 +1,22 @@
-<main>
-<div>
-    <img src="{{ asset('build/images/Vulcain-NNAC.png') }}" alt="logo">
-    <h1>
-        Bienvenue !
-    </h1>
-    <a href="{{ path('app_login')}}">Se connecter</a>
-    <a href="{{ path('app_register')}}">Créer un compte</a>
-    <a href="{{ path('app_main')}}">Annuler</a>
-</div>
-<div>
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+{% endblock %}
 
-</div>
-<img src="https://cdn-icons-png.flaticon.com/512/7344/7344260.png" alt="commerce icon">
+{% block javascripts %}
+	{{ encore_entry_script_tags('app') }}
+{% endblock %}
+
+<main class="container-bienvenue">
+	<div class="container-bienvenue__div-inputs">
+		<img src="{{ asset('build/images/Vulcain-NNAC.png') }}" alt="logo" class="container-bienvenue__div-inputs__img">
+		<h1 class= class="container-bienvenue__titre">
+			Bienvenue !
+		</h1>
+		<a href="{{ path('app_login')}}" class="container-bienvenue__div-inputs__login">Se connecter</a>
+		<a href="{{ path('app_register')}}" class="container-bienvenue__div-inputs__register">Créer un compte</a>
+		<a href="{{ path('app_main')}}" class="container-bienvenue__div-inputs__cancel">Annuler</a>
+	</div>
+	<div class="container-bienvenue__div-icon">
+		<img src="https://cdn-icons-png.flaticon.com/512/7344/7344260.png" alt="commerce icon">
+	</div>
 </main>

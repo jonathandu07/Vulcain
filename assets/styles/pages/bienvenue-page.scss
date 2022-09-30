@@ -1,0 +1,109 @@
+.container-bienvenue {
+    margin: auto;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow: hidden;
+
+    &__div-inputs {
+        background-color: $BG;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        width: 40%;
+
+        &__img {
+            width: 15%;
+            margin-top: 2vw;
+            margin-left: 2vw;
+        }
+
+        h1 {
+            @include h1SpecialPage;
+        }
+
+        &__titre {
+            color: $GX;
+            font-size: $SCardH2Size;
+        }
+
+        &__login {
+            text-align: center;
+            width: 16vw;
+            height: 3.5vw;
+            background-color: $BF;
+            border-radius: $buttonCardRadius;
+            color: $BG;
+            font-size: $SCardH2Size;
+            text-decoration: none;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 4vh;
+        }
+
+        &__login:hover {
+            color: $ghost-white;
+        }
+
+        // register
+
+        &__register {
+            text-align: center;
+            width: 16vw;
+            height: 3.5vw;
+            background-color: $ghost-white;
+            border-radius: $buttonCardRadius;
+            color: $BF;
+            font-size: $SCardH2Size;
+            text-decoration: none;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 2vh;
+            border: solid $SBorderWidth $BF;
+        }
+
+        &__register:hover {
+            color: $NNAC;
+            border: solid $SBorderWidth $NNAC;
+            background-color: white;
+        }
+
+        &__cancel {
+            font-size: $textSize;
+            text-decoration: none;
+            color: $NNAC;
+        }
+
+        &__cancel:hover {
+            $color: $BF;
+        }
+    }
+
+    // #####################
+
+    &__div-icon {
+        display: block;
+        width: 60vw;
+        height: 100%;
+        overflow: hidden;
+        // background-repeat: no-repeat;
+        // background-size: cover;
+
+        img {
+            object-fit: cover;
+            width: 50%;
+            margin-top: 15%;
+            margin-left: 26%;
+        }
+
+        // style="background-image:url(https://cdn-icons-png.flaticon.com/512/7344/7344260.png)"
+    }
+}
+
+// #footer{
+//     display: none;
+// }
+
+// #header{
+//     display: none;
+// }

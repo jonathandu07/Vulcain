@@ -1,22 +1,56 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %} #}
 
-{% block title %}Register{% endblock %}
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block javascripts %}
+	{{ encore_entry_script_tags('app') }}
+{% endblock %}
 
 {% block body %}
-    <h1>Register</h1>
+	<section class="register-page">
+		<div class="banner">
+			<img src="{{ asset('build/images/Vulcain-NNAC.png') }}" alt="logo">
+			<h1>Créer un compte</h1>
+		</div>
+		<main class="container-page">
+			<div class="container-page__div-left">
+				<img src="https://cdn-icons-png.flaticon.com/512/8011/8011201.png" alt="">
+			</div>
+			{# right #}
+			<div class="container-page__div-right">
+				{{ form_start(registrationForm) }}
+				<div class="container-page__div-right__pseudo-email">
+					{{ form_row(registrationForm.User_Pseudo) }}
+					{{ form_row(registrationForm.email) }}
+				</div>
+				<div class="container-page__div-right__name-firstname">
+					{{ form_row(registrationForm.User_Name) }}
+					{{ form_row(registrationForm.User_Firstname) }}
+				</div>
+				<div class="container-page__div-right__password">
+					{{ form_row(registrationForm.plainPassword, {}) }}
+				</div>
+				<div class="container-page__div-right__bottom">
+					{{ form_row(registrationForm.User_phone_number) }}
+					<div class="container-page__div-right__bottom__age-statut">
+						{{ form_row(registrationForm.User_age) }}
+						<div class="choice">
+							{{ form_row(registrationForm.statut) }}
+						</div>
+					</div>
+				</div>
+				<div class="container-page__div-right__validations">
+					<div>
+						{{ form_row(registrationForm.agreeTerms) }}
+					</div>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.User_Name) }}
-        {{ form_row(registrationForm.User_Firstname) }}
-        {{ form_row(registrationForm.User_Pseudo) }}
-        {{ form_row(registrationForm.User_phone_number) }}
-        {{ form_row(registrationForm.User_age) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.plainPassword, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
+					<button type="submit" class="btn">Valider</button>
+				</div>
+				{{ form_end(registrationForm) }}
+			</div>
+		</main>
+	</section>
 {% endblock %}

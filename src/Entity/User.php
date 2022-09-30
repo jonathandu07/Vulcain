@@ -99,6 +99,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Gedmo\Timestampable(on: 'update')]
     private ?DateTimeImmutable $updatedAt = null;
 
+    #[ORM\Column(length: 20)]
+    private ?string $statut = null;
+
     public function __construct()
     {
         $this->idAmin = new ArrayCollection();
@@ -261,5 +264,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function getGeoZone(): Collection
     {
         return $this->geoZone;
+    }
+
+    public function getStatut(): ?string
+    {
+        return $this->statut;
+    }
+
+    public function setStatut(string $statut): self
+    {
+        $this->statut = $statut;
+
+        return $this;
     }
 }

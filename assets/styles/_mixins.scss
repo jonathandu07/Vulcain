@@ -13,10 +13,14 @@
     font-size: $SCardH2Size;
 }
 
+// ############################
+
 @mixin boxShadowCard {
     -webkit-box-shadow: -4px 4px 10px 6px rgba(0, 0, 0, 0.3);
     box-shadow: -4px 4px 10px 6px rgba(0, 0, 0, 0.3);
 }
+
+// ############################
 
 @mixin secteur_cards {
     @include boxShadowCard;
@@ -30,16 +34,29 @@
     border: $SBorderWidth solid $BF;
 }
 
+// ############################
+
 @mixin centrer {
     margin-left: auto;
     margin-right: auto;
 }
+
+// ############################
+
+@mixin topCentrer {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+// ############################
 
 @mixin alignRowJustify {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
+
+// ############################
 
 @mixin divDomaineCards {
     width: 45%;
@@ -85,5 +102,38 @@
 
     a:hover {
         color: $RODM;
+    }
+}
+
+@mixin h1SpecialPage{
+    color: $GX;
+    font-size: $SCardH2Size;
+    margin-top: 20%;
+}
+
+// ############################
+
+@mixin registerInputs {
+    display: flex;
+    justify-content: space-between;
+    gap: 1vw;
+
+    label{
+        font-size: $textSize;
+    }
+
+    input{
+        width: 20vw;
+        height: 3vw;
+        font-size: $textSize;
+        border: none;
+        background-color: $ghost-white;
+        border-radius: 0.4vw;
+    }
+
+    input::placeholder{
+        margin-left: 50%;
+        color: $GX;
+        font-size: $textSize;
     }
 }

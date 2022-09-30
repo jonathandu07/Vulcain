@@ -1,0 +1,124 @@
+.register-page {
+    background-color: $BG;
+    margin: auto;
+    height: 100vh;
+    width: 100vw;
+
+    .banner {
+        height: 4vw;
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+
+        img {
+            height: 4vw;
+            margin-left: 1vw;
+        }
+
+        h1 {
+            @include topCentrer;
+            font-size: $SCardH2Size;
+            margin-left: 4vw;
+        }
+    }
+
+    //container page
+
+    .container-page {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100vw;
+        margin-top: 4vw;
+
+
+        &__div-left {
+            width: 30%;
+
+            img {
+                object-fit: cover;
+                margin-left: auto;
+                width: 100%;
+            }
+        }
+
+        // div right
+
+        &__div-right {
+            display: flex;
+            flex-direction: column;
+            width: 40%;
+
+            &__pseudo-email {
+                @include registerInputs;
+            }
+
+            &__name-firstname {
+                @include registerInputs;
+            }
+
+            &__password {
+                margin-top: 2vw;
+                @include registerInputs;
+            }
+
+            &__bottom {
+                @include registerInputs;
+
+                &__age-statut {
+                    @include registerInputs;
+
+                    input {
+                        width: 8vw;
+                    }
+
+                    .choice{
+                        margin-top: 1.5vw;
+                        
+                        label{
+                            margin-bottom: 0.3vw;
+                        }
+                    }
+
+                    select{
+                        width: 8vw;
+                        height: 3vw;
+                        background-color: $ghost-white;
+                        font-size: $textSize;
+                        border-radius: 0.4vw;
+                        border: none;
+                    }
+                }
+            }
+
+            &__validations {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 4vw;
+                margin-left: 20%;
+
+                div{
+                    @include topCentrer;
+                }
+
+                .btn{
+                    text-align: center;
+                    width: 16vw;
+                    height: 3.5vw;
+                    background-color: $BF;
+                    border-radius: $buttonCardRadius;
+                    color: $BG;
+                    font-size: $SCardH2Size;
+                    text-decoration: none;
+                    margin-left: auto;
+                    margin-right: auto;
+                    border: none;
+                }
+
+                .btn:hover{
+                    color: $ghost-white;
+                }
+            }
+        }
+    }
+}

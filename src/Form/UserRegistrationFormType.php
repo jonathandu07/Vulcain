@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 
@@ -68,7 +69,8 @@ class UserRegistrationFormType extends AbstractType
                         'max' => 255,
                     ]),
                     ],
-                    'label' => 'Mot de passe',
+                    'label' => false,
+                    'attr' => ['placeholder' => 'Mot de passe...'],
                     'label_attr' => [
                         'class' => 'form-label  mt-4'
                     ]
@@ -89,7 +91,8 @@ class UserRegistrationFormType extends AbstractType
                         'max' => 255,
                     ]),
                     ],
-                    'label' => 'Confirmation du mot de passe',
+                    'label' => false,
+                    'attr' => ['placeholder' => 'Confirmation du mot de passe...'],
                     'label_attr' => [
                         'class' => 'form-label  mt-4'
                     ]
@@ -171,6 +174,16 @@ class UserRegistrationFormType extends AbstractType
                     new Assert\NotBlank(),
                     new Assert\Length(['min' => 2, 'max' => 180])
                 ]
+            ])
+            ->add('statut', ChoiceType::class,[
+                'choices' =>[
+                    'Professionnel' => 'professionnel',
+                    'Particulier' => 'particulier',
+                ],
+                'label' => 'Vous êtes un :',
+                // 'attr' => [
+                //     'class' => 'choice',
+                // ],
             ])
             ;
     }
