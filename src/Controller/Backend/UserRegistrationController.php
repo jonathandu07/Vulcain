@@ -5,12 +5,14 @@ namespace App\Controller\Backend;
 use App\Entity\User;
 use App\Form\UserRegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserRegistrationController extends AbstractController
 {
@@ -22,6 +24,13 @@ class UserRegistrationController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+        
+            $file = new UploadedFile("images/avatar-default.png", 'avatar-default.png');
+            $user ->setImageFile($file);
+            $user->setImageName('avatar-default.png');
+            $user->setImageSize(100);
+
+
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(
@@ -34,7 +43,7 @@ class UserRegistrationController extends AbstractController
             $entityManager->flush();
             // do anything else you need here, like send an email
 
-            return $this->redirectToRoute('app_main');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('Backend/UserRegistration/register.html.twig', [

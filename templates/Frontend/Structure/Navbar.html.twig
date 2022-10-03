@@ -6,21 +6,45 @@
 			</a>
 		</div>
 
-		<div class="header__nav-right" id="div-right">
-			<div class="header__nav-right__div-left">
-				<a href="" class="header__nav-right__div-left__a">
-					<img src="{{ asset('build/images/spain.png') }}" alt="espagne" class="header__nav-right__div-left__a__img">
-				</a>
+		{% if app.user %}
+			{% if is_granted('ROLE_USER') %}
+				<div class="header__nav-right" id="div-right">
+					<div class="header__nav-right__div-left">
+						<a href="" class="header__nav-right__div-left__a">
+							<i class="bi bi-bell header__nav-right__div-left__a__img" id="icon"></i>
+						</a>
+					</div>
+					<div class="header__nav-right__div-middle">
+						<a href="" class="header__nav-right__div-middle__a">
+							<i class="bi bi-heart-fill header__nav-right__div-middle__a__img" id="icon"></i>
+						</a>
+					</div>
+					<div class="header__nav-right__div-right">
+						<a href="{{ path('app_bienvenue')}}" class="header__nav-right__div-right__a">
+							<i class="bi bi-person-bounding-box header__nav-right__div-right__a__i" id="icon"></i>
+						</a>
+					</div>
+				</div>
+			{% endif %}
+		{% else %}
+			<div class="header__nav-right" id="div-right">
+				<div class="header__nav-right__div-left">
+					<a href="" class="header__nav-right__div-left__a">
+						<img src="{{ asset('build/images/spain.png') }}" alt="espagne" class="header__nav-right__div-left__a__img">
+					</a>
+				</div>
+				<div class="header__nav-right__div-middle">
+					<a href="" class="header__nav-right__div-middle__a">
+						<img src="{{ asset('build/images/united_kingdom.png') }}" alt="angleterre" class="header__nav-right__div-middle__a__img">
+					</a>
+				</div>
+				<div class="header__nav-right__div-right">
+					<a href="{{ path('app_bienvenue')}}" class="header__nav-right__div-right__a">
+						<i class="bi bi-box-arrow-in-right header__nav-right__div-right__a__i" id="icon"></i>
+					</a>
+				</div>
 			</div>
-			<div class="header__nav-right__div-middle">
-				<a href="" class="header__nav-right__div-middle__a">
-					<img src="{{ asset('build/images/united_kingdom.png') }}" alt="angleterre" class="header__nav-right__div-middle__a__img">
-				</a>
-			</div>
-			<div class="header__nav-right__div-right">
-				<a href="{{ path('app_bienvenue')}}" class="header__nav-right__div-right__a">
-					<i class="bi bi-box-arrow-in-right header__nav-right__div-right__a__i" id="icon"></i>
-				</a>
-			</div>
-		</div>
+		{% endif %}
+
+
 		<nav></header>

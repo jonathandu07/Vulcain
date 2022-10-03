@@ -8,6 +8,7 @@ to have local server in https://
 composer require --dev phpstan/phpstan
 composer require symfony/webpack-encore-bundle
 composer require stof/doctrine-extensions-bundle
+composer require vich/uploader-bundle
 
 Build database!
 
