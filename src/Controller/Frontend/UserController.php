@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Frontend;
 
 use App\Entity\BadProduit;
 use App\Entity\BadService;
@@ -10,6 +10,7 @@ use App\Entity\GeographiqueZone;
 use App\Entity\Produits;
 use App\Entity\Services;
 use App\Form\RegistrationFormType;
+use App\Form\UserRegistrationFormType;
 use App\Repository\UserRepository;
 use App\Repository\CommentsRepository;
 use App\Repository\ProduitsRepository;
@@ -18,7 +19,7 @@ use App\Repository\BadProduitRepository;
 
 use App\Repository\BadServiceRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\GeographiquZoneRepository;
+use App\Repository\GeographiqueZoneRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Response;
@@ -28,7 +29,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UserController extends AbstractController
 {
     public function __construct(
-        private GeographiquZoneRepository $repoGeoZone,
+        private GeographiqueZoneRepository $repoGeoZone,
         private CommentsRepository $repoComments,
         private ProduitsRepository $repoProduit,
         private ServicesRepository $repoService,
@@ -38,15 +39,16 @@ class UserController extends AbstractController
 
     ) {
     }
+
     #[Route('/{User_Pseudo}', name: 'app_user_controler')]
-    public function index(User $user): Response
+    public function index(?User $user): Response
     {
         if (!$user instanceof User) {
             $this->addFlash('error', 'User non trouvé');
 
             return $this->redirectToRoute('app_main');
         }
-
+        
         $geoZone = $this->repoGeoZone->findAll();
         $commentaire = $this->repoComments->findAll();
         $produits = $this->repoProduit->findAll();
@@ -61,6 +63,7 @@ class UserController extends AbstractController
             'service' => $service,
             'badService' => $badService,
             'badproduit' => $badproduit,
+            'user' => $user,    
         ]);
     }
 
@@ -223,5 +226,36 @@ class UserController extends AbstractController
         return $this->renderForm('Frontend/user_controler/_badProduitForm.html.twig', [
             'badproduitForm' => $badproduitform,
         ]);
+    }
+
+    #[Route('/edit/{User_Pseudo}', name: 'app_user_controler_edit', methods: ['GET|POST'])]
+    public function editUser(User $user, Request $request): Response
+    {
+        $form = $this->createForm(UserRegistrationFormType::class, $user);
+        $form ->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()){
+            $this->repoUser ->add($user, true);
+            $this->addFlash('success', 'Utilisateur modifé avec succès');
+
+            return $this ->redirectToRoute('app_user_controler', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('Frontend/user_controler/_edit.html.twig', [
+            'form' => $form,
+            'user' => $user,
+            'title_heading' => 'Modifier son profil',
+        ]);
+    }
+
+    #[Route('/{User_Pseudo}', name: 'app_user_controler_delete', methods: ['POST'])]
+    public function deleteUser(Request $request, User $user): Response
+    {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->get('_token')))
+        {
+            $this->repoUser->remove($user, true);
+        }
+
+        return $this->redirectToRoute('app_logout', [], Response::HTTP_SEE_OTHER);
     }
 }

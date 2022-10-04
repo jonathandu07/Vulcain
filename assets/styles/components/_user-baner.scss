@@ -1,0 +1,57 @@
+.article-user {
+    display: flex;
+    justify-content: space-around;
+    height: 20vw;
+    background-color: $ghost-white;
+    overflow: hidden;
+
+    &__avatar {
+        height: 15vw;
+        width: 15vw;
+        margin-top: 2.5vw;
+        border-radius: 10vw;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            margin: auto;
+            background-color: white;
+        }
+    }
+
+    &__user-info {
+        text-align: center;
+
+        div {
+            width: 50%;
+            margin-left: 25%;
+            margin-top: 5%;
+            display: flex;
+
+            h1 {
+                font-size: $SCardH2Size;
+            }
+        }
+
+        a {
+            background-color: white;
+            border: solid $SBorderWidth $RODM;
+            font-size: $SCardH2Size;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 0.5vw;
+            height: 3.5vw;
+            display: block;
+            width: 15vw;
+            color: $NNAC;
+            margin-top: 75%;
+        }
+
+        & a:hover {
+            color: $BF;
+            background-color: $BG;
+        }
+    }
+
+
+}

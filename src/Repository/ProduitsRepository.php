@@ -39,6 +39,32 @@ class ProduitsRepository extends ServiceEntityRepository
         }
     }
 
+    public function findProduitByUser(int $userId)
+    {
+        return $this ->createQueryBuilder('p')
+            ->andWhere('p.user = :id')
+            ->setParameter('id', $userId)
+            ->orderBy('p.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+
+    }
+
+    public function findByProduit(int $produitId, string $nomProduit)
+    {
+    return $this->createQueryBuilder('p')
+        ->join('p.produits', 'r')
+        ->andWhere('r.id = :produitId')
+        ->setParameter('produitId', $produitId)
+        ->andWhere('r.nomProduit = :nomProduit')
+        ->setParameter('nomProduit', $nomProduit)
+        ->orderBy('p.createdAt', 'DESC')
+        ->getQuery()
+        ->getResult();
+    }
+
+
+
 //    /**
 //     * @return Produits[] Returns an array of Produits objects
 //     */

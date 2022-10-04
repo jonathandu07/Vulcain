@@ -47,6 +47,7 @@
             display: flex;
             flex-direction: row;
             align-self: end;
+            margin-right: 1vw;
 
             &__div-left {
                 height: 4rem;
@@ -57,9 +58,20 @@
 
                 &__a {
                     margin: auto;
+                    width: 100%;
+                    display: block;
+                    height: 100%;
 
                     &__img {
                         width: 4rem;
+                    }
+
+                    &__i {
+                        font-size: 2rem;
+                        color: $BG;
+                        position: relative;
+                        top: 0.5rem;
+                        left: 25%;
                     }
                 }
             }
@@ -73,9 +85,20 @@
 
                 &__a {
                     margin: auto;
+                    width: 100%;
+                    display: block;
+                    height: 100%;
 
                     &__img {
                         width: 4rem;
+                    }
+
+                    &__i {
+                        font-size: 2rem;
+                        color: $BG;
+                        position: relative;
+                        top: 0.5rem;
+                        left: 25%;
                     }
                 }
             }
@@ -89,6 +112,9 @@
 
                 &__a {
                     margin: auto;
+                    width: 100%;
+                    display: block;
+                    height: 100%;
 
                     &__i {
                         font-size: 4rem;
@@ -96,13 +122,21 @@
                         position: relative;
                         bottom: 1rem;
                     }
+
+                    &__icon {
+                        font-size: 3rem;
+                        color: $BG;
+                        position: relative;
+                        bottom: 10%;
+                        left: 15%;
+                    }
                 }
             }
         }
     }
 }
 
-#div-right{
+#div-right {
     // display: grid;
     // grid-template-columns: repeat(3, 1fr);
     // grid-template-rows: 1fr;

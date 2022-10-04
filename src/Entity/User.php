@@ -7,7 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Gedmo\Mapping\Annotation as Gedmo;
 use Doctrine\Common\Collections\Collection;
-use App\Repository\GeographiquZoneRepository;
 use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -76,7 +75,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     )]
     private ?string $User_Firstname = null;
 
-    #[Vich\UploadableField(mapping: 'user_image', fileNameProperty: 'imageName', size: 'imageSize')]
+    #[Vich\UploadableField(mapping: 'user', fileNameProperty: 'imageName', size: 'imageSize')]
     private ?File $imageFile = null;
 
     #[ORM\Column(length: 255)]
@@ -97,7 +96,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\NotBlank()]
     private ?int $User_Age = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
+    // #[Gedmo\User_pseudo(fields: ['user_pseudo'])]
     private ?string $User_Pseudo = null;
 
     #[ORM\Column(length: 12, unique: true)]

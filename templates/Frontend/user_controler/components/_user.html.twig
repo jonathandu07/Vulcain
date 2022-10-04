@@ -1,0 +1,25 @@
+{# <pre>
+    {{ dump(user) }}
+</pre> #}
+<article class="article-user">
+	<div class="article-user__avatar">
+		{# <img src="{{ vich_uploader_asset(user, 'imageFile')}}" alt="{{user.imageName}}">
+				        https://cdn-icons-png.flaticon.com/512/892/892781.png #}
+		<img src="https://cdn-icons-png.flaticon.com/512/892/892781.png" alt="{{user.imageName}}">
+	</div>
+	{# information #}
+	<div class="article-user__user-info">
+		<div>
+			<h1>
+				{{ user.UserFirstname }}
+			</h1>
+			<h1>
+				{{ user.UserName }}
+			</h1>
+		</div>
+		{# {{ path('app_user_controler_edit')}} #}
+		{# <a href="">
+			modifier profil
+		</a> #}
+	</div>
+</article>

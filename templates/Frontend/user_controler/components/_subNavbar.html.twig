@@ -1,0 +1,23 @@
+<article class="article-subnavbar">
+{# Créer un produit #}
+    <div>
+    <a href="{{ path('app_user_controler_produit',{User_Pseudo: app.user.UserPseudo})}}">Créer un produit</a>
+    </div>
+    {# Créer un service #}
+    <div>
+    <a href="{{ path('app_user_controler_service',{User_Pseudo: app.user.UserPseudo})}}">Créer un service</a>
+    </div>
+    {# modifier profil #}
+    <div>
+    <a href="{{ path('app_user_controler_edit',{User_Pseudo: app.user.UserPseudo})}}">modifier profil</a>
+    </div>
+    {# Se déconnecter #}
+    <div>
+    <a href="{{ path('app_logout')}}">Se déconnecter</a>
+    </div>
+    {# Supprimer compte #}
+    <div>
+    <a href="{{ path('app_user_controler_delete',{User_Pseudo: app.user.UserPseudo})}}">Supprimer compte</a>
+    </div>
+</article>
+
