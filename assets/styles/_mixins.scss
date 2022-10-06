@@ -105,7 +105,7 @@
     }
 }
 
-@mixin h1SpecialPage{
+@mixin h1SpecialPage {
     color: $GX;
     font-size: $SCardH2Size;
     margin-top: 20%;
@@ -118,22 +118,53 @@
     justify-content: space-between;
     gap: 1vw;
 
-    label{
+    label {
         font-size: $textSize;
     }
 
-    input{
+    input {
         width: 20vw;
         height: 3vw;
         font-size: $textSize;
         border: none;
         background-color: $ghost-white;
         border-radius: 0.4vw;
+        padding-left: 0.2vw;
     }
 
-    input::placeholder{
-        margin-left: 50%;
+    input::placeholder {
+        left: 50%;
         color: $GX;
         font-size: $textSize;
     }
+}
+
+// ############################
+
+@mixin imageBanner {
+    height: 4vw;
+    margin-left: 1vw;
+}
+
+
+// ############################
+
+@mixin textBanner {
+    @include topCentrer;
+    font-size: $SCardH2Size;
+    margin-left: 4vw;
+}
+
+@mixin glashMorphismForm {
+    /* From https://css.glass */
+    background: rgba(247, 247, 255, 0.14);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.1px);
+    -webkit-backdrop-filter: blur(3.1px);
+}
+
+@mixin shadowForm {
+    -webkit-box-shadow: 5px 4px 50px -20px #000000;
+    box-shadow: 5px 4px 50px -20px #000000;
 }

@@ -3,18 +3,21 @@
 namespace App\Form;
 
 use App\Entity\Produits;
-use Doctrine\DBAL\Types\FloatType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class ProduitsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nomProduit', TestType::class, [
+            ->add('nomProduit', TextType::class, [
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Nom produit',
@@ -22,21 +25,29 @@ class ProduitsType extends AbstractType
                 'required' => true,
             ])
             ->add('description', TextareaType::class,[
-                'label' => false,[
+                'label' => false,
+                'attr' =>[
                 'placeholder' => 'Description',],
-                'required' => true,
             ])
-            ->add('prix', FloatType::class,[
+            ->add('prix', NumberType::class,[
                 'label' =>  'Prix',
                 'required' => true,
             ])
-            ->add('type', TestType::class, [
+            ->add('type', TextType::class, [
                 'label' => false,
                 'attr' => [
                     'placeholder' => 'Type de produit',
                 ],
                 'required' => true,
-            ]);
+            ])
+            ->add('imageFile', VichImageType::class, [
+                'required'=> true,
+                'download_uri' => false,
+                'asset_helper' => true,
+                'image_uri' => true,
+                'label' => false,
+            ])
+            ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void

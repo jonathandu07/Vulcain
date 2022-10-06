@@ -1,0 +1,37 @@
+{% block body %}
+		<main class="register-service"> <article class="register-service__article">
+			<div class="register-service__article__form">
+				<div class="register-service__article__form__banner">
+					<img src="{{ asset('build/images/Vulcain-NNAC.png') }}" alt="logo" onclick="history.back()">
+					<h1>Enregistrer un service</h1>
+				</div>
+				{{ form_start(serviceForm) }}
+				<div class="div-top">
+					{{ form_row(serviceForm.nomService) }}
+					{{ form_row(serviceForm.type) }}
+				</div>
+				<div class="div-description">
+					{{ form_row(serviceForm.description) }}
+				</div>
+				<div class="div-bottom">
+					{{ form_row(serviceForm.tarif) }}
+					<button style="display:block;" onclick="document.getElementById('getFile').click()" class="">Joindre fichier</button>
+					{{ form_row(serviceForm.imageFile) }}
+				</div>
+				<button type="submit" class="btn">Enregistrer</button>
+				{{ form_end(serviceForm) }}
+			</div>
+			<div class="register-service__article__div-img">
+				<img src="https://cdn-icons-png.flaticon.com/512/5942/5942485.png" alt="service">
+			</div>
+		</article>
+	</main>
+{% endblock %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block javascripts %}
+	{{ encore_entry_script_tags('app') }}
+{% endblock %}

@@ -17,20 +17,23 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 class UserRegistrationController extends AbstractController
 {
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
-    {
+    public function register(
+        Request $request,
+        UserPasswordHasherInterface $userPasswordHasher,
+        EntityManagerInterface $entityManager
+    ): Response {
         $user = new User();
         $form = $this->createForm(UserRegistrationFormType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-        
-            $file = new UploadedFile("images/avatar-default.png", 'avatar-default.png');
-            $user ->setImageFile($file);
-            $user->setImageName('avatar-default.png');
-            $user->setImageSize(100);
 
-
+            // // $image = '/avatar-default.png';
+            // $file = new UploadedFile("images/avatar-default.png", 'avatar-default.png');
+            // // $file = new UploadedFile("upload_destination".$image, 'avatar-default.png');
+            // $user ->setImageFile($file);
+            // $user->setImageName('avatar-default.png');
+            // $user->setImageSize(100);
             // encode the plain password
             $user->setPassword(
                 $userPasswordHasher->hashPassword(

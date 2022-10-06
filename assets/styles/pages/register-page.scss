@@ -11,14 +11,11 @@
         overflow: hidden;
 
         img {
-            height: 4vw;
-            margin-left: 1vw;
+            @include imageBanner;
         }
 
         h1 {
-            @include topCentrer;
-            font-size: $SCardH2Size;
-            margin-left: 4vw;
+            @include textBanner;
         }
     }
 

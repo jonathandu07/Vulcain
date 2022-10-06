@@ -1,0 +1,42 @@
+{# {% extends 'base.html.twig' %} #}
+
+{# {% block title %}Register
+{% endblock %} #}
+
+	{% block body %}
+		<main class="register-produit"> <article class="register-produit__article">
+			<div class="register-produit__article__form">
+				<div class="register-produit__article__form__banner">
+					<img src="{{ asset('build/images/Vulcain-NNAC.png') }}" alt="logo" onclick="history.back()">
+					<h1>Enregistrer un produit</h1>
+				</div>
+				{{ form_start(produitForm) }}
+				<div class="div-top">
+					{{ form_row(produitForm.nomProduit) }}
+					{{ form_row(produitForm.type) }}
+				</div>
+				<div class="div-description">
+					{{ form_row(produitForm.description) }}
+				</div>
+				<div class="div-bottom">
+					{{ form_row(produitForm.prix) }}
+					<button style="display:block;" onclick="document.getElementById('getFile').click()" class="">Joindre fichier</button>
+					{{ form_row(produitForm.imageFile) }}
+				</div>
+				<button type="submit" class="btn">Enregistrer</button>
+				{{ form_end(produitForm) }}
+			</div>
+			<div class="register-produit__article__div-img">
+				<img src="https://cdn-icons-png.flaticon.com/512/7186/7186988.png" alt="produit">
+			</div>
+		</article>
+	</main>
+{% endblock %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block javascripts %}
+	{{ encore_entry_script_tags('app') }}
+{% endblock %}

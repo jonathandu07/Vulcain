@@ -2,10 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\ProduitsRepository;
+use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ProduitsRepository;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 #[ORM\Entity(repositoryClass: ProduitsRepository::class)]
+#[Vich\Uploadable]
 class Produits
 {
     #[ORM\Id]
@@ -25,11 +31,22 @@ class Produits
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $type = null;
 
-    #[ORM\Column]
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Gedmo\Timestampable(on: 'create')]
     private ?\DateTimeImmutable $createdAt = null;
 
+    #[ORM\Column(type: 'datetime_immutable')]
+    #[Gedmo\Timestampable(on: 'update')]
+    private ?DateTimeImmutable $updatedAt = null;
+
+    #[Vich\UploadableField(mapping: 'produits', fileNameProperty: 'imageName', size: 'imageSize')]
+    private ?File $imageFile = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $imageName = null;
+
     #[ORM\Column]
-    private ?\DateTimeImmutable $updatedAt = null;
+    private ?int $imageSize = null;
 
     public function getId(): ?int
     {
@@ -77,11 +94,56 @@ class Produits
         return $this->type;
     }
 
-    public function setType(?string $type): self
+    public function setType(string $type): self
     {
         $this->type = $type;
 
         return $this;
+    }
+
+    // vich ############################
+
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     */
+    public function setImageFile(File|UploadedFile $imageFile = null): void
+    {
+        $this->imageFile = $imageFile;
+        if (null !== $imageFile) {
+            // Il faut biensur que la propriété updatedAt soit crée sur l'Entity.
+            $this->updatedAt = new \DateTimeImmutable();
+        }
+    }
+
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageName(?string $imageName): void
+    {
+        $this->imageName = $imageName;
+    }
+
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    public function setImageSize(?int $imageSize): void
+    {
+        $this->imageSize = $imageSize;
+    }
+
+    public function getImageSize(): ?int
+    {
+        return $this->imageSize;
     }
 
     public function getCreatedAt(): ?\DateTimeImmutable

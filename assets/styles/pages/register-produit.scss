@@ -1,0 +1,136 @@
+.register-produit {
+    margin: auto;
+    width: 100vw;
+    height: auto;
+
+    // body
+
+    &__article {
+        display: flex;
+        // justify-content: space-around;
+
+        &__form {
+            width: 60vw;
+            height: auto;
+
+            &__banner {
+                display: flex;
+                height: 4vw;
+
+                img {
+                    @include imageBanner;
+                }
+
+                h1 {
+                    @include textBanner;
+                }
+            }
+
+            form {
+                @include shadowForm;
+                border: solid $SBorderWidth $BG;
+                height: $SCardHeight;
+                width: $SCardHeight;
+                margin: auto;
+                position: relative;
+                top: 8vw;
+                overflow: hidden;
+                border-radius: $inputBorderRadius;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-around;
+                @include glashMorphismForm;
+
+                .div-top {
+                    width: 100%;
+                    height: 4vw;
+                    display: flex;
+                    justify-content: space-around;
+                    // margin-top: 2vw;
+
+                    input {
+                        width: 14vw;
+                        height: 3vw;
+                        font-size: $textSize;
+                        border: solid $SBorderWidth $BG;
+                        border-radius:$inputBorderRadius;
+                    }
+
+                    input::placeholder {
+                        margin-left: 50%;
+                        color: $GX;
+                        font-size: $textSize;
+                    }
+                }
+
+                .div-description {
+                    width: 29vw;
+                    height: 14vw;
+                    font-size: $textSize;
+                    margin-left: auto;
+                    margin-right: auto;
+                    // margin-top: 1vw;
+
+                    textarea {
+                        width: 100%;
+                        height: 100%;
+                        color: $GX;
+                        font-size: $textSize;
+                        resize: none;
+                        border: solid $SBorderWidth $BG;
+                        border-radius:$inputBorderRadius;
+                    }
+                }
+
+                .div-bottom {
+                    width: 100%;
+                    height: 4vw;
+                    display: flex;
+                    justify-content: space-around;
+
+                    input {
+                        width: 14vw;
+                        height: 3vw;
+                        font-size: $textSize;
+                        border: solid $SBorderWidth $BG;
+                        border-radius:$inputBorderRadius;
+                    }
+
+                    label {
+                        display: none;
+                    }
+
+                    button{
+                        width: 14vw;
+                        height: 3vw;
+                        font-size: $textSize;
+                        // border: solid $SBorderWidth $BG;
+                        border-radius:$inputBorderRadius;
+                        background-color: $BG;
+                    }
+
+                    #produits_imageFile_file {
+                        display: none;
+                    }
+                }
+
+                .btn{
+                    width: 29vw;
+                    @include centrer;
+                }
+            }
+        }
+
+        &__div-img {
+            width: 50vw;
+            overflow: hidden;
+            background-color: $ghost-white;
+            height: 100vh;
+
+            img {
+                width: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+}

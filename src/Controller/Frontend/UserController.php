@@ -2,26 +2,30 @@
 
 namespace App\Controller\Frontend;
 
-use App\Entity\BadProduit;
-use App\Entity\BadService;
 use App\Entity\User;
 use App\Entity\Comments;
-use App\Entity\GeographiqueZone;
 use App\Entity\Produits;
 use App\Entity\Services;
+use App\Form\ServiceType;
+use App\Entity\BadProduit;
+use App\Entity\BadService;
+use App\Form\ProduitsType;
+use App\Form\BadServiceType;
+use App\Form\BadProduitsType;
+use App\Entity\GeographiqueZone;
 use App\Form\RegistrationFormType;
-use App\Form\UserRegistrationFormType;
 use App\Repository\UserRepository;
+use App\Form\UserRegistrationFormType;
 use App\Repository\CommentsRepository;
 use App\Repository\ProduitsRepository;
 use App\Repository\ServicesRepository;
-use App\Repository\BadProduitRepository;
 
+use App\Repository\BadProduitRepository;
 use App\Repository\BadServiceRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use App\Repository\GeographiqueZoneRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
+use App\Repository\GeographiqueZoneRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -131,15 +135,15 @@ class UserController extends AbstractController
         }
 
         $produit = new Produits();
-        $produitform = $this -> createForm(RegistrationFormType::class, $produit);
+        $produitform = $this -> createForm(ProduitsType::class, $produit);
         $produitform -> handleRequest($request);
 
         if($produitform -> isSubmitted() && $produitform->isValid()){
-            $this ->repoProduit -> add($this -> $produit, true);
+            $this ->repoProduit -> add($produit, true);
 
             $this ->addFlash('success', 'Produit ajouté');
             return $this ->redirectToRoute('app_user_controler', [
-                'User_Pseudo' => $this -> user -> getUserPseudo()
+                'User_Pseudo' => $user -> getUserPseudo()
             ]);
         }
 
@@ -157,15 +161,15 @@ class UserController extends AbstractController
             return $this->redirectToRoute('app_main');
         }
         $service = new Services();
-        $serviceform = $this->createForm(RegistrationFormType::class, $service);
+        $serviceform = $this->createForm(ServiceType::class, $service);
         $serviceform->handleRequest($request);
 
         if ($serviceform->isSubmitted() && $serviceform->isValid()) {
-            $this->repoService->add($this->$service, true);
+            $this->repoService->add($service, true);
 
             $this->addFlash('success', 'Service ajouté');
             return $this->redirectToRoute('app_user_controler', [
-                'User_Pseudo' => $this->user->getUserPseudo()
+                'User_Pseudo' => $user->getUserPseudo()
             ]);
         }
 
@@ -184,7 +188,7 @@ class UserController extends AbstractController
         }
 
         $badService = new BadService();
-        $badServiceform = $this->createForm(RegistrationFormType::class, $badService);
+        $badServiceform = $this->createForm(BadServiceType::class, $badService);
         $badServiceform->handleRequest($request);
 
         if ($badServiceform->isSubmitted() && $badServiceform->isValid()) {
@@ -211,7 +215,7 @@ class UserController extends AbstractController
         }
 
         $badproduit = new BadProduit();
-        $badproduitform = $this->createForm(RegistrationFormType::class, $badproduit);
+        $badproduitform = $this->createForm(BadProduitsType::class, $badproduit);
         $badproduitform->handleRequest($request);
 
         if ($badproduitform->isSubmitted() && $badproduitform->isValid()) {
@@ -228,7 +232,7 @@ class UserController extends AbstractController
         ]);
     }
 
-    #[Route('/edit/{User_Pseudo}', name: 'app_user_controler_edit', methods: ['GET|POST'])]
+    #[Route('/{User_Pseudo}/edit', name: 'app_user_controler_edit', methods: ['GET|POST'])]
     public function editUser(User $user, Request $request): Response
     {
         $form = $this->createForm(UserRegistrationFormType::class, $user);

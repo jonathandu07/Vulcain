@@ -43,7 +43,7 @@ php bin/console make:controller BrandNewController
 create controller:
 symfony console make:controller ConferenceController
 
-registrationUser -> findall()
+registrationUser -> findAll()
 
 update the database from entity modification:
 php bin/console doctrine:schema:update --force
@@ -60,3 +60,5 @@ pour avoir des informations sur quel test le résultat se rapporte
 php bin/phpunit --testdox
 
 composer require --dev liip/test-fixtures-bundle
+
+php bin/console doctrine:database:drop --force
