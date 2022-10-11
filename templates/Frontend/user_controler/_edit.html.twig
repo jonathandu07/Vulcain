@@ -1,0 +1,55 @@
+{% extends "baseMin.html.twig" %}
+
+{% block body %}
+	<main class="edit-user">
+		<article class="edit-user__article">
+			<div class="edit-user__article__form">
+				<div class="edit-user__article__form__banner">
+					<img src="{{ asset('build/images/Vulcain-NNAC.png') }}" alt="logo" onclick="history.back()">
+					<h1>Modifier profil</h1>
+				</div>
+				{{ form_start(form) }}
+				<div class="div-top">
+					{{ form_row(form.User_Name)}}
+					{{ form_row(form.User_Firstname)}}
+				</div>
+				<div class="div-id">
+					{{ form_row(form.email)}}
+					{{ form_row(form.User_phone_number)}}
+				</div>
+				<div class="div-middle">
+					{{ form_row(form.User_Pseudo)}}
+					<button style="display:block;" onclick="document.getElementById('edit_user_imageFile_file').click()" class="">Modifier avatar</button>
+					{{ form_row(form.imageFile)}}
+				</div>
+				<div class="div-bottom">
+					{{ form_row(form.statut)}}
+					{{ form_row(form.User_age)}}
+				</div>
+				{{ form_row(form._token) }}
+				<div class="validations">
+					{{ form_row(form.agreeTerms) }}
+					<button type="submit" class="btn">Enregistrer</button>
+				</div>
+				{{ form_end(form, {render_rest: false}) }}
+			</div>
+			<div class="edit-user__article__div-img">
+				{% if user.imageName %}
+					<img
+					src="{{ vich_uploader_asset(user, 'imageFile')}}" alt="{{user.imageName}}">
+					{# https://cdn-icons-png.flaticon.com/512/892/892781.png #}
+				{% else %}
+					<img src="https://cdn-icons-png.flaticon.com/512/892/892781.png" alt="{{user.imageName}}">
+				{% endif %}
+			</div>
+		</article>
+	</main>
+{% endblock %}
+
+{% block stylesheets %}
+	{{ encore_entry_link_tags('app') }}
+{% endblock %}
+
+{% block javascripts %}
+	{{ encore_entry_script_tags('app') }}
+{% endblock %}

@@ -32,6 +32,93 @@
     display: flex;
     flex-direction: column;
     border: $SBorderWidth solid $BF;
+
+    &__div-title {
+        height: $SCardDivTitleHeight;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        border-bottom: solid $SBorderWidth $BF;
+        width: 100%;
+
+        &__h2 {
+            position: relative;
+            top: 25%;
+            font-size: $SCardH2Size;
+        }
+    }
+
+    // middle
+
+    &__div-middle {
+        height: $heightImageCard;
+        width: 100%;
+        margin-right: auto;
+        margin-left: auto;
+
+        &__div-img {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            height: $heightImageCard;
+            object-fit: cover;
+            transition: all 1s ease-in-out;
+
+            &__img {
+                object-fit: cover;
+                width: 100%;
+                margin: auto;
+                height: 100%;
+            }
+        }
+
+        // text
+
+        &__div-text {
+            position: relative;
+            z-index: 0;
+            width: 100%;
+            height: $heightImageCard;
+            bottom: $heightImageCard;
+
+            &__p {
+                width: 90%;
+                text-align: start;
+                font-size: $textSize;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: 5vw;
+            }
+        }
+
+        // hover
+
+        &__div-img:hover {
+            opacity: 0%;
+
+            // &__img:hover {
+            //     opacity: 0%;
+            //     transition-duration: 0ms;
+            // }
+        }
+    }
+
+    &__div-link {
+        height: $SCardDivTitleHeight;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        border-top: solid $SBorderWidth $BF;
+        width: 100%;
+
+        &__a {
+            @include button_A;
+        }
+
+        &__a:hover {
+            color: $BF;
+        }
+    }
 }
 
 // ############################

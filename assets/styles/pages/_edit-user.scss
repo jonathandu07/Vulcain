@@ -1,0 +1,201 @@
+#edit_user_imageFile_file {
+    display: none;
+}
+
+
+.edit-user {
+    margin: auto;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+
+    // body
+
+    &__article {
+        display: flex;
+        // justify-content: space-around;
+
+        &__form {
+            width: 60vw;
+            height: 100vh;
+            background-color: $ghost-white;
+
+            &__banner {
+                display: flex;
+                height: 4vw;
+
+                img {
+                    @include imageBanner;
+                }
+
+                h1 {
+                    @include textBanner;
+                }
+            }
+
+            // form
+
+            form {
+                width: 80%;
+                margin: auto;
+
+                .div-top {
+                    @include registerInputs;
+
+                    input {
+                        background-color: $BG;
+                    }
+                }
+
+                .div-id {
+                    @include registerInputs;
+
+                    input {
+                        background-color: $BG;
+                    }
+
+                    .password {
+                        @include registerInputs;
+                        gap: 2vw;
+                        margin-top: 3vw;
+
+                        input {
+                            background-color: $BG;
+                            width: 9vw;
+                        }
+                    }
+                }
+
+                .div-middle {
+                    @include registerInputs;
+
+                    input {
+                        background-color: $BG;
+                    }
+
+                    .vich-image{
+                        display: none;
+                    }
+
+                    button {
+                        width: 20vw;
+                        height: 3vw;
+                        font-size: $textSize;
+                        // border: solid $SBorderWidth $BG;
+                        border-radius: $inputBorderRadius;
+                        background-color: $BG;
+                        margin-left: 7vw;
+                        margin-top: 3vw;
+                    }
+                }
+
+                .div-bottom {
+                    @include registerInputs;
+
+                    input {
+                        background-color: $BG;
+                    }
+                    .required{
+                        margin-top: 1.5vw;
+                    }
+                    div {
+                        margin-top: 1.5vw;
+                        display: flex;
+                        flex-direction: column;
+                        width: 20vw;
+
+                        label {
+                            margin-bottom: 0.3vw;
+                        }
+                    }
+
+                    select {
+                        width: 20vw;
+                        height: 3vw;
+                        background-color: $BG;
+                        font-size: $textSize;
+                        border-radius: 0.4vw;
+                        border: none;
+                    }
+
+                    .age-statut {
+                        @include registerInputs;
+                        width: 20vw;
+                        height: 3vw;
+                        gap: 4vw;
+
+                        input {
+                            width: 8vw;
+                            background-color: $BG;
+                        }
+
+                        .choice {
+                            margin-top: 1.5vw;
+                            display: flex;
+                            flex-direction: column;
+
+                            label {
+                                margin-bottom: 0.3vw;
+                            }
+                        }
+
+                        select {
+                            width: 8vw;
+                            height: 3vw;
+                            background-color: $BG;
+                            font-size: $textSize;
+                            border-radius: 0.4vw;
+                            border: none;
+                        }
+                    }
+                }
+
+                .validations {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 4vw;
+                    margin-left: 20%;
+
+                    div {
+                        @include topCentrer;
+                    }
+
+                    .btn {
+                        width: 20vw;
+                        height: 4vw;
+                        font-size: $textSize;
+                        border: none;
+                        background-color: $BG;
+                        border-radius: 0.4vw;
+                        padding-left: 0.2vw;
+                        font-size: $SCardH2Size;
+                        color: $ghost-white;
+                        text-decoration: none;
+                        margin-left: auto;
+                        margin-right: auto;
+                        border: $SBorderWidth solid white;
+                    }
+
+                    .btn:hover {
+                        color: $BG;
+                        border: $BG solid white;
+                        background-color: $ghost-white;
+                    }
+                }
+            }
+        }
+
+        &__div-img {
+            width: 40vw;
+            height: 100vw;
+            overflow: hidden;
+
+            img {
+                width: 60%;
+                position: relative;
+                left: 25%;
+                top: 7%;
+            }
+        }
+    }
+}

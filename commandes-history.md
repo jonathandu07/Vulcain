@@ -27,8 +27,8 @@ php bin/console make:form
 php bin/console make:registration-form
 symfony console make:auth
 
- CRF protection
- composer require symfony/security-csrf
+CRF protection
+composer require symfony/security-csrf
 
 yarn install
 yarn watch
@@ -62,3 +62,9 @@ php bin/phpunit --testdox
 composer require --dev liip/test-fixtures-bundle
 
 php bin/console doctrine:database:drop --force
+
+    				{# {% if app.request.get('_route') == 'app_register' %}
+    					<div class="password">
+    				        {{ form_row(form.plainPassword)}}
+    					</div>
+    				{% endif %} #}

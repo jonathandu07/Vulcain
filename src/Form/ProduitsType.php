@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 
 class ProduitsType extends AbstractType
 {
@@ -29,9 +30,12 @@ class ProduitsType extends AbstractType
                 'attr' =>[
                 'placeholder' => 'Description',],
             ])
-            ->add('prix', NumberType::class,[
+            ->add('prix', MoneyType::class,[
                 'label' =>  'Prix',
                 'required' => true,
+                'attr' => [
+                    'placeholder' => 'Prix du produit',
+                ],
             ])
             ->add('type', TextType::class, [
                 'label' => false,

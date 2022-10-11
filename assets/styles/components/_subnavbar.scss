@@ -27,6 +27,20 @@
         margin-top: 0.5vw;
     }
 
+    .delete{
+        background-color: white;
+        border: solid $SBorderWidth $RODM;
+        font-size: $textSize;
+        text-decoration: none;
+        text-align: center;
+        border-radius: 0.5vw;
+        height: 2vw;
+        display: block;
+        width: 9vw;
+        color: $NNAC;
+        margin-top: 0.5vw;
+    }
+
     & a:hover {
         color: $BF;
         background-color: $BG;

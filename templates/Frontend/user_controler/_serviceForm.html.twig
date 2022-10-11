@@ -1,3 +1,5 @@
+{% extends "baseMin.html.twig" %}
+
 {% block body %}
 		<main class="register-service"> <article class="register-service__article">
 			<div class="register-service__article__form">
@@ -15,7 +17,7 @@
 				</div>
 				<div class="div-bottom">
 					{{ form_row(serviceForm.tarif) }}
-					<button style="display:block;" onclick="document.getElementById('getFile').click()" class="">Joindre fichier</button>
+					<button style="display:block;" onclick="document.getElementById('service_imageFile_file').click()" class="">Joindre fichier</button>
 					{{ form_row(serviceForm.imageFile) }}
 				</div>
 				<button type="submit" class="btn">Enregistrer</button>

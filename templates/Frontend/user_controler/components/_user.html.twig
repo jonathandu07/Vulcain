@@ -3,14 +3,13 @@
 </pre> #}
 <article class="article-user">
 	<div class="article-user__avatar">
-		{% if user.imageFile is defined  and user.imageFile is not null %}
+		{% if user.imageName %}
 			<img
 			src="{{ vich_uploader_asset(user, 'imageFile')}}" alt="{{user.imageName}}">
 			{# https://cdn-icons-png.flaticon.com/512/892/892781.png #}
 		{% else %}
 			<img src="https://cdn-icons-png.flaticon.com/512/892/892781.png" alt="{{user.imageName}}">
 		{% endif %}
-
 	</div>
 	{# information #}
 	<div class="article-user__user-info">

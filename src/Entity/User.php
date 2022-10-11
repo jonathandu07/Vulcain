@@ -46,14 +46,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @var string The hashed password
      */
     #[ORM\Column]
-    #[Assert\Regex(
-        pattern: '/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,32}$/',
-        message: 'le mot de passe doit comporter au minimum un chiffre, un carractère minuscule,, majuscule et spécial'
-    )]
+    // #[Assert\Regex(
+    //     pattern: '/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[*.!@$%^&(){}[]:;<>,.?/~_+-=|\]).{8,32}$/',
+    //     message: 'le mot de passe doit comporter au minimum un chiffre, un carractère minuscule,, majuscule et spécial'
+    // )]
     #[Assert\Length(
         min: 8,
         minMessage: "Mot de passe trop court minimum {{ limit }} caractères",
-        max: 32,
+        max: 256,
         maxMessage: "Mot de passe trop long, longueur maximum {{ limit }} caractères",
     )]
     private ?string $password = null;
@@ -118,6 +118,42 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function __construct()
     {
         $this->idAmin = new ArrayCollection();
+    }
+
+    public function __serialize(): array
+    {
+        return [
+            'id' => $this->id,
+            'email' => $this->email,
+            'imageName' => $this->imageName,
+            'password' => $this->password,
+            'User_phone_number' => $this->User_phone_number,
+            'User_Firstname' => $this->User_Firstname,
+            'User_Name' => $this->User_Name,
+            'User_Age' => $this->User_Age,
+            'updatedAt' => $this->updatedAt,
+            'roles' => $this->roles,
+            'createdAt' => $this->createdAt,
+            'statut' => $this->statut,
+            'User_Pseudo' => $this->User_Pseudo,
+        ];
+    }
+
+    public function __unserialize(array $data): void
+    {
+        $this ->id = $data['id'];
+        $this ->email = $data['email'];
+        $this ->imageName = $data['imageName'];
+        $this ->User_phone_number = $data['User_phone_number'];
+        $this ->password = $data['password'];
+        $this->User_Firstname = $data['User_Firstname'];
+        $this->User_Name = $data['User_Name'];
+        $this->User_Age = $data['User_Age'];
+        $this->roles = $data['roles'];
+        $this->createdAt = $data['createdAt'];
+        $this->statut = $data['statut'];
+        $this->updatedAt = $data['updatedAt'];
+        $this->User_Pseudo = $data['User_Pseudo'];
     }
 
     public function getId(): ?int
