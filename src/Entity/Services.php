@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ServicesRepository;
 use Gedmo\Mapping\Annotation as Gedmo;
@@ -47,6 +49,14 @@ class Services
 
     #[ORM\Column]
     private ?int $imageSize = null;
+
+    #[ORM\OneToMany(mappedBy: 'service', targetEntity: BadService::class)]
+    private Collection $signalements;
+
+    public function __construct()
+    {
+        $this->signalements = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -168,5 +178,35 @@ class Services
     public function getImageSize(): ?int
     {
         return $this->imageSize;
+    }
+
+    /**
+     * @return Collection<int, BadService>
+     */
+    public function getSignalements(): Collection
+    {
+        return $this->signalements;
+    }
+
+    public function addSignalement(BadService $signalement): self
+    {
+        if (!$this->signalements->contains($signalement)) {
+            $this->signalements->add($signalement);
+            $signalement->setService($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSignalement(BadService $signalement): self
+    {
+        if ($this->signalements->removeElement($signalement)) {
+            // set the owning side to null (unless already changed)
+            if ($signalement->getService() === $this) {
+                $signalement->setService(null);
+            }
+        }
+
+        return $this;
     }
 }

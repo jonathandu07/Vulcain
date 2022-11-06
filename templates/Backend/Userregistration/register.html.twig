@@ -1,4 +1,4 @@
-{% extends "baseMin.html.twig" %}
+{% extends 'baseMin.html.twig' %}
 
 {% block stylesheets %}
 	{{ encore_entry_link_tags('app') }}
@@ -45,7 +45,6 @@
 					<div>
 						{{ form_row(registrationForm.agreeTerms) }}
 					</div>
-
 
 					<button type="submit" class="btn">Valider</button>
 				</div>

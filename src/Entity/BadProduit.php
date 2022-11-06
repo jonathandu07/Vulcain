@@ -2,8 +2,10 @@
 
 namespace App\Entity;
 
-use App\Repository\BadProduitRepository;
+use App\Entity\Admin;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\BadProduitRepository;
 
 #[ORM\Entity(repositoryClass: BadProduitRepository::class)]
 class BadProduit
@@ -13,39 +15,69 @@ class BadProduit
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Admin $IdAdmin = null;
+    private ?User $user = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(inversedBy: 'signalements')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?Produits $IdProduit = null;
+    private ?Produits $produit = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $reason = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    private ?string $description = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getIdAdmin(): ?Admin
+    public function getUser(): ?User
     {
-        return $this->IdAdmin;
+        return $this->user;
     }
 
-    public function setIdAdmin(Admin $IdAdmin): self
+    public function setUser(?User $user): self
     {
-        $this->IdAdmin = $IdAdmin;
+        $this->user = $user;
 
         return $this;
     }
 
-    public function getIdProduit(): ?Produits
+    public function getProduit(): ?Produits
     {
-        return $this->IdProduit;
+        return $this->produit;
     }
 
-    public function setIdProduit(Produits $IdProduit): self
+    public function setProduit(?Produits $produit): self
     {
-        $this->IdProduit = $IdProduit;
+        $this->produit = $produit;
+
+        return $this;
+    }
+
+    public function getReason(): ?string
+    {
+        return $this->reason;
+    }
+
+    public function setReason(string $reason): self
+    {
+        $this->reason = $reason;
+
+        return $this;
+    }
+
+    public function getDescription(): ?string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(?string $description): self
+    {
+        $this->description = $description;
 
         return $this;
     }

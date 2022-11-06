@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\ProduitsRepository;
 use Symfony\Component\HttpFoundation\File\File;
@@ -47,6 +49,14 @@ class Produits
 
     #[ORM\Column]
     private ?int $imageSize = null;
+
+    #[ORM\OneToMany(mappedBy: 'produits', targetEntity: BadProduit::class, orphanRemoval: true)]
+    private Collection $signalements;
+
+    public function __construct()
+    {
+        $this->signalements = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -166,6 +176,36 @@ class Produits
     public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, BadProduit>
+     */
+    public function getSignalements(): Collection
+    {
+        return $this->signalements;
+    }
+
+    public function addSignalement(BadProduit $signalement): self
+    {
+        if (!$this->signalements->contains($signalement)) {
+            $this->signalements->add($signalement);
+            $signalement->setProduits($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSignalement(BadProduit $signalement): self
+    {
+        if ($this->signalements->removeElement($signalement)) {
+            // set the owning side to null (unless already changed)
+            if ($signalement->getProduits() === $this) {
+                $signalement->setProduits(null);
+            }
+        }
 
         return $this;
     }
